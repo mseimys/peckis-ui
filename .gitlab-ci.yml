@@ -20,4 +20,5 @@ build:
 test:
   stage: test
   script:
-    - docker run --rm $IMAGE_TAG npm test
+    - docker run --rm $IMAGE_TAG npm test -- --coverage
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
