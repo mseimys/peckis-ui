@@ -10,3 +10,36 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+div.container {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 60px;
+}
+
+.board {
+  display: inline-block;
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+}
+
+.guess-bar {
+  margin: 1rem;
+  color: #036;
+  font-style: italic;
+}
+
+.action-bar {
+  margin-top: 1rem;
+}
+
+.error {
+  margin: 1rem;
+  color: #A00;
+}
