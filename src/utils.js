@@ -19,3 +19,5 @@ export function dataURItoBlob(dataURI) {
 
   return new Blob([ia], { type: mimeString });
 }
+
+export const delay = time => new Promise(res => setTimeout(res, time));

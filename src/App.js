@@ -5,7 +5,8 @@ import { guessService } from "./service";
 
 const resetState = {
   error: "",
-  guess: "Click Guess To Know"
+  guess: "Click Guess To Know",
+  isLoading: false
 };
 
 class App extends React.Component {
@@ -20,7 +21,8 @@ class App extends React.Component {
 
   handleGuess = async () => {
     this.setState({
-      ...resetState
+      ...resetState,
+      isLoading: true
     });
     const canvas = this.canvas.current;
     const image = canvas.ctx.drawing.canvas.toDataURL("image/png");
@@ -30,12 +32,14 @@ class App extends React.Component {
       const guess = await guessService(image);
       this.setState({
         guess,
-        error: ""
+        error: "",
+        isLoading: false
       });
     } catch (e) {
       this.setState({
         guess: "?",
-        error: String(e)
+        error: String(e),
+        isLoading: false
       });
     }
   };
@@ -45,9 +49,10 @@ class App extends React.Component {
   };
 
   render() {
-    const { guess, error } = this.state;
+    const { guess, error, isLoading } = this.state;
     return (
       <div className="container">
+        {isLoading && <div className="overlay" />}
         <h1>Peckis</h1>
         <h4>Draw any digit and click guess</h4>
         <div className="board">
@@ -58,7 +63,13 @@ class App extends React.Component {
           <button onClick={this.handleClear}>Clear</button>
         </div>
         {error && <div className="error">{error}</div>}
-        <div className="guess-bar">My guess: {guess}</div>
+        <div className="guess-bar">
+          {isLoading ? (
+            <span>Guessing...</span>
+          ) : (
+            <span>My guess: {guess}</span>
+          )}
+        </div>
       </div>
     );
   }
