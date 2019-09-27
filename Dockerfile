@@ -4,6 +4,8 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm install --no-progress
 COPY . /app
+ARG PUBLIC_URL
+ENV PUBLIC_URL $PUBLIC_URL
 RUN npm run build
 ARG GUESS_API
 RUN sed -i "s|{GUESS_API}|$GUESS_API|" /app/build/index.html
